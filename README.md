@@ -4,7 +4,7 @@
 [![Spring Boot 3.3.5](https://img.shields.io/badge/Spring_Boot-3.3.5-6DB33F?logo=spring-boot&logoColor=white)](https://spring.io/projects/spring-boot)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![Flyway](https://img.shields.io/badge/Flyway-DB_Migration-CC0200?logo=flyway&logoColor=white)](https://flywaydb.org/)
-[![OpenAPI / Swagger UI](https://img.shields.io/badge/Swagger-OpenAPI_3.0-85EA2D?logo=swagger&logoColor=black)](http://localhost:8080/swagger-ui.html)
+[![OpenAPI / Swagger UI](https://img.shields.io/badge/Swagger-OpenAPI_3.0-85EA2D?logo=swagger&logoColor=black)](http://localhost:8081/swagger-ui.html)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Take-home Technical Assessment for **Junior Java Developer Role**  
@@ -61,62 +61,58 @@ erDiagram
 
 ---
 
-## 🛠️ Tech Stack & Key Features
+## 🚀 How to Run the Project (Pilihan Cara Menjalankan)
 
-* **Framework & Core**: Java 17, Spring Boot 3.3.5, Spring MVC, Spring Data JPA
-* **Database & Migration**: PostgreSQL 16, Flyway DB Migration (`V1__create_books_table.sql`)
-* **Validation & DTOs**: Jakarta Bean Validation (`@NotBlank`, `@PastOrPresent`), DTO Pattern (`BookCreateRequest`, `BookUpdateRequest`, `BookPatchRequest`, `BookResponse`)
-* **Error Handling**: Global `@RestControllerAdvice` (`GlobalExceptionHandler.java`) returning standardized `ErrorResponse` payloads
-* **Documentation**: Swagger OpenAPI 3 (`http://localhost:8080/swagger-ui.html`)
-* **Testing**: JUnit 5 + Mockito Unit Tests (`BookServiceTest.java`) and MockMvc Integration Tests (`BookControllerTest.java`)
-* **DevOps & Containers**: Docker & Docker Compose (`docker-compose.yml`)
+Tim IT / Reviewer dapat memilih **salah satu dari 3 cara instan di bawah ini**:
 
----
-
-## 🚀 How to Run the Project
-
-### Option A: Running via Docker Compose (Recommended - Zero Setup)
-
-Ensure Docker Desktop is running on your machine, then execute:
+### ⚡ Option 1: Quickest 1-Command Start (Zero Setup - H2 Memory Database)
+*Gunakan cara ini jika Anda ingin menguji aplikasi secara langsung tanpa perlu menginstal/menyiapkan PostgreSQL.*
 
 ```bash
-# Start PostgreSQL Database and Spring Boot Microservice in containers
-docker-compose up --build -d
+# Untuk Linux / macOS:
+./mvnw spring-boot:run -Dspring-boot.run.profiles=test
 
-# Verify running containers
-docker-compose ps
+# Untuk Windows (PowerShell / Command Prompt):
+.\mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=test"
 ```
-
-The application will start automatically at **`http://localhost:8080`**.
+👉 Aplikasi akan langsung berjalan di **`http://localhost:8081`**.  
+👉 Akses Swagger UI di: **`http://localhost:8081/swagger-ui.html`**.
 
 ---
 
-### Option B: Running Locally with Maven
+### 🐳 Option 2: Running via Docker Compose (PostgreSQL Container)
+*Gunakan cara ini jika komputer Anda memiliki Docker Desktop.*
 
-#### 1. Start PostgreSQL
-Ensure PostgreSQL is running locally on port `5432` with a database named `bookdb` (or update `.env` / `application.yml` credentials).
-
-```sql
-CREATE DATABASE bookdb;
-```
-
-#### 2. Run the Spring Boot Application
 ```bash
-# Clean and package the application
-mvn clean package
-
-# Run the Spring Boot Microservice
-mvn spring-boot:run
+# Otomatis menjalankan container PostgreSQL & Spring Boot Microservice
+docker-compose up --build
 ```
+👉 Database PostgreSQL dan aplikasi Spring Boot akan otomatis berjalan terintegrasi di port `8081`.
 
 ---
 
-### Option C: Running Automated Tests
+### 🐘 Option 3: Local PostgreSQL + Maven Standard
+*Gunakan cara ini jika Anda sudah memiliki PostgreSQL lokal di port 5432.*
 
-To execute unit and integration test suites using the H2 in-memory database test profile:
+1. Buat database di PostgreSQL:
+   ```sql
+   CREATE DATABASE bookdb;
+   ```
+2. Jalankan aplikasi:
+   ```bash
+   mvn spring-boot:run
+   ```
+
+---
+
+## 🧪 Automated Unit & Integration Tests
+
+Untuk menjalankan seluruh test suite (JUnit 5 + Mockito + MockMvc Integration Tests):
 
 ```bash
 mvn test
+# atau menggunakan wrapper:
+./mvnw test
 ```
 
 ---
@@ -125,7 +121,7 @@ mvn test
 
 | Variable | Default Value | Description |
 |---|---|---|
-| `SERVER_PORT` | `8080` | Server HTTP Port |
+| `SERVER_PORT` | `8081` | Server HTTP Port |
 | `SPRING_DATASOURCE_URL` | `jdbc:postgresql://localhost:5432/bookdb` | PostgreSQL JDBC Connection URL |
 | `SPRING_DATASOURCE_USERNAME` | `postgres` | Database Username |
 | `SPRING_DATASOURCE_PASSWORD` | `postgres` | Database Password |
@@ -135,17 +131,17 @@ mvn test
 ## 🧪 Postman Collection & Swagger UI
 
 ### 1. Swagger OpenAPI 3 UI
-Once the service is running, open your browser and navigate to:
-👉 **[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)**
+Setelah aplikasi berjalan, buka browser ke:  
+👉 **[http://localhost:8081/swagger-ui.html](http://localhost:8081/swagger-ui.html)**
 
 ### 2. Postman Collection Export
-A complete Postman Collection JSON is included in the root directory:
+File Postman Collection JSON resmi sudah disertakan di root project:  
 📄 [`postman_collection.json`](./postman_collection.json)
 
-**How to Import into Postman**:
-1. Open Postman.
-2. Click **Import** -> Select `postman_collection.json`.
-3. All 6 endpoints (`POST`, `GET`, `GET by ID`, `PUT`, `PATCH`, `DELETE`) are pre-configured with sample payloads.
+**Cara Import ke Postman**:
+1. Buka aplikasi Postman.
+2. Klik **Import** -> Pilih file `postman_collection.json`.
+3. Seluruh 6 endpoint (`POST`, `GET`, `GET by ID`, `PUT`, `PATCH`, `DELETE`) sudah terkonfigurasi lengkap dengan sample payload JSON.
 
 ---
 
