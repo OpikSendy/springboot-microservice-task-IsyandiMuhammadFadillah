@@ -69,7 +69,7 @@ erDiagram
 
 ---
 
-## ⚡ REST API Endpoints Specification
+## ⚡ REST API Endpoints & Sample Payloads
 
 | Method | Endpoint | Description | Status Code |
 |---|---|---|---|
@@ -79,6 +79,86 @@ erDiagram
 | `PUT` | `/api/books/{id}` | Full update of a book by ID | `200 OK` / `400 Bad Request` / `404 Not Found` |
 | `PATCH` | `/api/books/{id}` | Partial update of a book by ID | `200 OK` / `404 Not Found` |
 | `DELETE` | `/api/books/{id}` | Delete a book by ID | `204 No Content` / `404 Not Found` |
+
+---
+
+### 🧪 Sample Test Evidence & Payload Examples
+
+#### 1. Add New Book (`POST /api/books`)
+**Request Payload**:
+```json
+{
+  "title": "Belajar Spring Boot 3 & Java 17",
+  "author": "Isyandi Muhammad Fadillah",
+  "isbn": "978-602-123456",
+  "publishedDate": "2026-08-05"
+}
+```
+**Response (`201 Created`)**:
+```json
+{
+  "id": 1,
+  "title": "Belajar Spring Boot 3 & Java 17",
+  "author": "Isyandi Muhammad Fadillah",
+  "isbn": "978-602-123456",
+  "publishedDate": "2026-08-05",
+  "createdAt": "2026-08-05T23:13:05.846189",
+  "updatedAt": "2026-08-05T23:13:05.846189"
+}
+```
+
+#### 2. Get All Books (`GET /api/books`)
+**Response (`200 OK`)**:
+```json
+[
+  {
+    "id": 1,
+    "title": "Belajar Spring Boot 3 & Java 17",
+    "author": "Isyandi Muhammad Fadillah",
+    "isbn": "978-602-123456",
+    "publishedDate": "2026-08-05",
+    "createdAt": "2026-08-05T23:13:05.846189",
+    "updatedAt": "2026-08-05T23:13:05.846189"
+  }
+]
+```
+
+#### 3. Partial Update Book (`PATCH /api/books/1`)
+**Request Payload**:
+```json
+{
+  "title": "Spring Boot Masterclass (Updated)"
+}
+```
+**Response (`200 OK`)**:
+```json
+{
+  "id": 1,
+  "title": "Spring Boot Masterclass (Updated)",
+  "author": "Isyandi Muhammad Fadillah",
+  "isbn": "978-602-123456",
+  "publishedDate": "2026-08-05",
+  "createdAt": "2026-08-05T23:13:05.846189",
+  "updatedAt": "2026-08-05T23:14:00.123456"
+}
+```
+
+#### 4. Delete Book (`DELETE /api/books/1`)
+**Response (`204 No Content`)**:
+*(Empty Response Body - Standard REST API Specification)*
+
+#### 5. Get Deleted Book (`GET /api/books/1`)
+**Response (`404 Not Found`)**:
+```json
+{
+  "success": false,
+  "status": 404,
+  "error": "NOT_FOUND",
+  "message": "Book not found with ID: 1",
+  "details": null,
+  "timestamp": "2026-08-05T23:17:29.8529205"
+}
+```
 
 ---
 
