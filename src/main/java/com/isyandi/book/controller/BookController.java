@@ -6,6 +6,8 @@ import com.isyandi.book.dto.BookResponse;
 import com.isyandi.book.dto.BookUpdateRequest;
 import com.isyandi.book.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +27,11 @@ public class BookController {
 
     @PostMapping
     @Operation(summary = "Add a new book", description = "Creates a new book record with Title, Author, ISBN, and Published Date.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Book created successfully"),
+            @ApiResponse(responseCode = "400", description = "Invalid request payload or validation error"),
+            @ApiResponse(responseCode = "409", description = "Book with the given ISBN already exists")
+    })
     public ResponseEntity<BookResponse> createBook(@Valid @RequestBody BookCreateRequest request) {
         BookResponse response = bookService.createBook(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
@@ -32,6 +39,7 @@ public class BookController {
 
     @GetMapping
     @Operation(summary = "Get all books", description = "Retrieves a list of all registered books.")
+    @ApiResponse(responseCode = "200", description = "Successfully retrieved list of books")
     public ResponseEntity<List<BookResponse>> getAllBooks() {
         List<BookResponse> books = bookService.getAllBooks();
         return ResponseEntity.ok(books);
@@ -39,6 +47,10 @@ public class BookController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Get a book by ID", description = "Retrieves details of a specific book by its unique ID.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved book details"),
+            @ApiResponse(responseCode = "404", description = "Book not found with specified ID")
+    })
     public ResponseEntity<BookResponse> getBookById(@PathVariable Long id) {
         BookResponse response = bookService.getBookById(id);
         return ResponseEntity.ok(response);
@@ -46,6 +58,12 @@ public class BookController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Update a book by ID (Full Update)", description = "Updates all fields of an existing book by its ID.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Book updated successfully"),
+            @ApiResponse(responseCode = "400", description = "Invalid request payload"),
+            @ApiResponse(responseCode = "404", description = "Book not found with specified ID"),
+            @ApiResponse(responseCode = "409", description = "ISBN already in use by another book")
+    })
     public ResponseEntity<BookResponse> updateBook(
             @PathVariable Long id,
             @Valid @RequestBody BookUpdateRequest request) {
@@ -55,6 +73,11 @@ public class BookController {
 
     @PatchMapping("/{id}")
     @Operation(summary = "Partial update of a book by ID", description = "Updates selected fields (e.g. title only) of a book.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Book partially updated successfully"),
+            @ApiResponse(responseCode = "404", description = "Book not found with specified ID"),
+            @ApiResponse(responseCode = "409", description = "ISBN already in use by another book")
+    })
     public ResponseEntity<BookResponse> patchBook(
             @PathVariable Long id,
             @RequestBody BookPatchRequest request) {
@@ -64,6 +87,10 @@ public class BookController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a book by ID", description = "Removes a book record permanently from the database.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Book deleted successfully (No Content)"),
+            @ApiResponse(responseCode = "404", description = "Book not found with specified ID")
+    })
     public ResponseEntity<Void> deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
         return ResponseEntity.noContent().build();
