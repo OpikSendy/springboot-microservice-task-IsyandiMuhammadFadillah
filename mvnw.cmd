@@ -42,7 +42,7 @@ set MAVEN_WRAPPER_JAR="%MAVEN_PROJECT_BASEDIR%\.mvn\wrapper\maven-wrapper.jar"
 if exist %MAVEN_WRAPPER_JAR% goto run
 
 echo Downloading Maven Wrapper...
-powershell -Command "Invoke-WebRequest -Uri https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/3.2.0/maven-wrapper-3.2.0.jar -OutFile %MAVEN_WRAPPER_JAR%"
+powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; (New-Object System.Net.WebClient).DownloadFile('https://repo.maven.apache.org/maven2/org/apache/maven/wrapper/maven-wrapper/3.2.0/maven-wrapper-3.2.0.jar', %MAVEN_WRAPPER_JAR%)"
 
 :run
 %MAVEN_JAVA_EXE% -jar %MAVEN_WRAPPER_JAR% %MAVEN_CMD_LINE_ARGS%
