@@ -4,7 +4,7 @@
 [![Spring Boot 3.3.5](https://img.shields.io/badge/Spring_Boot-3.3.5-6DB33F?logo=spring-boot&logoColor=white)](https://spring.io/projects/spring-boot)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![Flyway](https://img.shields.io/badge/Flyway-DB_Migration-CC0200?logo=flyway&logoColor=white)](https://flywaydb.org/)
-[![OpenAPI / Swagger UI](https://img.shields.io/badge/Swagger-OpenAPI_3.0-85EA2D?logo=swagger&logoColor=black)](http://localhost:8081/swagger-ui.html)
+[![OpenAPI / Swagger UI](https://img.shields.io/badge/Swagger-OpenAPI_3.0-85EA2D?logo=swagger&logoColor=black)](http://localhost:8085/swagger-ui.html)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Take-home Technical Assessment for **Junior Java Developer Role**  
@@ -30,8 +30,8 @@ cd springboot-microservice-task-IsyandiMuhammadFadillah
 .\mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=test"
 ```
 
-👉 **Aplikasi langsung Aktif**: **`http://localhost:8081`**  
-👉 **Swagger UI Interaktif**: **`http://localhost:8081/swagger-ui.html`**  
+👉 **Aplikasi langsung Aktif**: **`http://localhost:8085`**  
+👉 **Swagger UI Interaktif**: **`http://localhost:8085/swagger-ui.html`**  
 
 ---
 
@@ -203,6 +203,17 @@ docker-compose up --build
 
 ---
 
+## 💡 Troubleshooting & Port Conflicts
+
+Jika port `8085` di komputer Anda sedang digunakan oleh aplikasi lain, Anda dapat menentukan port lain secara dinamis langsung dari command line:
+
+```bash
+# Menggunakan port kustom (misalnya port 8090):
+.\mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=test" "-Dspring-boot.run.arguments=--server.port=8090"
+```
+
+---
+
 ## 🧪 Automated Unit & Integration Tests
 
 Untuk menjalankan seluruh test suite (JUnit 5 + Mockito + MockMvc Integration Tests):
@@ -219,7 +230,7 @@ mvn test
 
 | Variable | Default Value | Description |
 |---|---|---|
-| `SERVER_PORT` | `8081` | Server HTTP Port |
+| `SERVER_PORT` | `8085` | Server HTTP Port |
 | `SPRING_DATASOURCE_URL` | `jdbc:postgresql://localhost:5432/bookdb` | PostgreSQL JDBC Connection URL |
 | `SPRING_DATASOURCE_USERNAME` | `postgres` | Database Username |
 | `SPRING_DATASOURCE_PASSWORD` | `postgres` | Database Password |
@@ -230,7 +241,7 @@ mvn test
 
 ### 1. Swagger OpenAPI 3 UI
 Setelah aplikasi berjalan, buka browser ke:  
-👉 **[http://localhost:8081/swagger-ui.html](http://localhost:8081/swagger-ui.html)**
+👉 **[http://localhost:8085/swagger-ui.html](http://localhost:8085/swagger-ui.html)**
 
 ### 2. Postman Collection Export
 File Postman Collection JSON resmi sudah disertakan di root project:  
