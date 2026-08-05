@@ -4,7 +4,8 @@
 [![Spring Boot 3.3.5](https://img.shields.io/badge/Spring_Boot-3.3.5-6DB33F?logo=spring-boot&logoColor=white)](https://spring.io/projects/spring-boot)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![Flyway](https://img.shields.io/badge/Flyway-DB_Migration-CC0200?logo=flyway&logoColor=white)](https://flywaydb.org/)
-[![OpenAPI / Swagger UI](https://img.shields.io/badge/Swagger-OpenAPI_3.0-85EA2D?logo=swagger&logoColor=black)](http://localhost:8085/swagger-ui.html)
+[![OpenAPI / Swagger UI](https://img.shields.io/badge/Swagger-OpenAPI_3.0-85EA2D?logo=swagger&logoColor=black)](https://triumphant-cooperation-production-170d.up.railway.app/swagger-ui.html)
+[![Live on Railway](https://img.shields.io/badge/Live_Demo-Railway-8B5CF6?logo=railway&logoColor=white)](https://triumphant-cooperation-production-170d.up.railway.app/swagger-ui.html)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Take-home Technical Assessment for **Junior Java Developer Role**  
@@ -32,6 +33,20 @@ cd springboot-microservice-task-IsyandiMuhammadFadillah
 
 👉 **Aplikasi langsung Aktif**: **`http://localhost:8085`**  
 👉 **Swagger UI Interaktif**: **`http://localhost:8085/swagger-ui.html`**  
+
+---
+
+## 🌐 Live Demo (Cloud Deployment — Railway)
+
+> Tidak perlu install apapun. Langsung buka dan uji coba API secara real-time:
+
+| Platform | URL |
+|----------|-----|
+| 🚀 **Live Swagger UI** | [https://triumphant-cooperation-production-170d.up.railway.app/swagger-ui.html](https://triumphant-cooperation-production-170d.up.railway.app/swagger-ui.html) |
+| 🔗 **Base API URL** | [https://triumphant-cooperation-production-170d.up.railway.app](https://triumphant-cooperation-production-170d.up.railway.app) |
+| 📦 **GitHub Repository** | [https://github.com/OpikSendy/springboot-microservice-task-IsyandiMuhammadFadillah](https://github.com/OpikSendy/springboot-microservice-task-IsyandiMuhammadFadillah) |
+
+> ⚠️ **Catatan**: Instance Railway ini menggunakan PostgreSQL cloud (Railway DB) dengan Flyway auto-migration. Semua endpoint dapat diuji langsung tanpa setup lokal.
 
 ---
 
