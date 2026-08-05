@@ -123,7 +123,30 @@ erDiagram
 ]
 ```
 
-#### 3. Partial Update Book (`PATCH /api/books/1`)
+#### 3. Full Update Book (`PUT /api/books/1`)
+**Request Payload**:
+```json
+{
+  "title": "Belajar Spring Boot 3 & Java 17 (Edisi Revisi)",
+  "author": "Isyandi Muhammad Fadillah",
+  "isbn": "978-602-123456",
+  "publishedDate": "2026-08-05"
+}
+```
+**Response (`200 OK`)**:
+```json
+{
+  "id": 1,
+  "title": "Belajar Spring Boot 3 & Java 17 (Edisi Revisi)",
+  "author": "Isyandi Muhammad Fadillah",
+  "isbn": "978-602-123456",
+  "publishedDate": "2026-08-05",
+  "createdAt": "2026-08-05T23:13:05.846189",
+  "updatedAt": "2026-08-05T23:46:00.998123"
+}
+```
+
+#### 4. Partial Update Book (`PATCH /api/books/1`)
 **Request Payload**:
 ```json
 {
@@ -139,15 +162,15 @@ erDiagram
   "isbn": "978-602-123456",
   "publishedDate": "2026-08-05",
   "createdAt": "2026-08-05T23:13:05.846189",
-  "updatedAt": "2026-08-05T23:14:00.123456"
+  "updatedAt": "2026-08-05T23:47:00.123456"
 }
 ```
 
-#### 4. Delete Book (`DELETE /api/books/1`)
+#### 5. Delete Book (`DELETE /api/books/1`)
 **Response (`204 No Content`)**:
 *(Empty Response Body - Standard REST API Specification)*
 
-#### 5. Get Deleted Book (`GET /api/books/1`)
+#### 6. Get Deleted Book (`GET /api/books/1`)
 **Response (`404 Not Found`)**:
 ```json
 {
