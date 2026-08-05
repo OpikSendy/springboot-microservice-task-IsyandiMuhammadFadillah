@@ -14,6 +14,27 @@ Take-home Technical Assessment for **Junior Java Developer Role**
 
 ---
 
+## ⚡ Quick Start / TL;DR (Jalan dalam 2 Langkah - Zero Setup)
+
+Untuk Tim IT / Reviewer yang ingin menguji aplikasi secara instant tanpa perlu install/setup database:
+
+```bash
+# 1. Clone Repository
+git clone https://github.com/OpikSendy/springboot-microservice-task-IsyandiMuhammadFadillah.git
+cd springboot-microservice-task-IsyandiMuhammadFadillah
+
+# 2. Jalankan Aplikasi (Linux / macOS)
+./mvnw spring-boot:run -Dspring-boot.run.profiles=test
+
+# ATAU jika menggunakan Windows (PowerShell):
+.\mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=test"
+```
+
+👉 **Aplikasi langsung Aktif**: **`http://localhost:8081`**  
+👉 **Swagger UI Interaktif**: **`http://localhost:8081/swagger-ui.html`**  
+
+---
+
 ## 📌 Executive Summary
 
 **Simple Book Management Microservice** is a high-performance RESTful backend service developed using **Java 17** and **Spring Boot 3.3.5**. It provides complete CRUD operations on book inventory records with real-time payload validation, Flyway database migrations, PostgreSQL persistence, and global exception handling.
@@ -61,9 +82,9 @@ erDiagram
 
 ---
 
-## 🚀 How to Run the Project (Pilihan Cara Menjalankan)
+## 🚀 How to Run Options (Pilihan Cara Menjalankan Lengkap)
 
-Tim IT / Reviewer dapat memilih **salah satu dari 3 cara instan di bawah ini**:
+Tim IT / Reviewer dapat memilih **salah satu dari 3 cara di bawah ini**:
 
 ### ⚡ Option 1: Quickest 1-Command Start (Zero Setup - H2 Memory Database)
 *Gunakan cara ini jika Anda ingin menguji aplikasi secara langsung tanpa perlu menginstal/menyiapkan PostgreSQL.*
@@ -75,8 +96,6 @@ Tim IT / Reviewer dapat memilih **salah satu dari 3 cara instan di bawah ini**:
 # Untuk Windows (PowerShell / Command Prompt):
 .\mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=test"
 ```
-👉 Aplikasi akan langsung berjalan di **`http://localhost:8081`**.  
-👉 Akses Swagger UI di: **`http://localhost:8081/swagger-ui.html`**.
 
 ---
 
@@ -87,7 +106,6 @@ Tim IT / Reviewer dapat memilih **salah satu dari 3 cara instan di bawah ini**:
 # Otomatis menjalankan container PostgreSQL & Spring Boot Microservice
 docker-compose up --build
 ```
-👉 Database PostgreSQL dan aplikasi Spring Boot akan otomatis berjalan terintegrasi di port `8081`.
 
 ---
 
