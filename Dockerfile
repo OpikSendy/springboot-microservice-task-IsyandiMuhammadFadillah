@@ -3,7 +3,7 @@ FROM eclipse-temurin:17-jdk-alpine AS builder
 WORKDIR /app
 COPY . .
 RUN chmod +x ./mvnw || true
-RUN ./mvnw clean package -DskipTests
+RUN ./mvnw clean package -DskipTests || (apk add --no-cache maven && mvn clean package -DskipTests)
 
 # Stage 2: Runtime
 FROM eclipse-temurin:17-jre-alpine
